@@ -1,0 +1,23 @@
+---
+paths:
+  - "**/*.cjs"
+  - "**/*.js"
+  - "**/*.jsx"
+  - "**/*.mjs"
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.vue"
+---
+
+Modules:
+- Use ES modules with `import` and `export` by default; fall back to CommonJS `require()` only when required by the surrounding tool or config format
+- Use named exports by default; reserve default exports for framework-required entry points (e.g. config files, Next.js pages, Nuxt plugins)
+
+Async code:
+- Prefer `async` functions and `await` over Promise `.then()` chains
+
+Constants:
+- Group related constants inside an object literal when they form a lookup table (e.g. error codes, messages, settings); keep standalone constants otherwise
+
+Errors:
+- Implement domain-specific error types (see core/clean-code) by extending the built-in `Error` class
