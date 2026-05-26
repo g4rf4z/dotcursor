@@ -1,0 +1,36 @@
+---
+description: APPLY TypeScript best practices WHEN writing TS code
+globs: **/*.ts, **/*.tsx
+alwaysApply: false
+---
+
+Typing:
+- Type explicitly at module boundaries (exported functions, public APIs). Prefer inference for local values
+- Avoid `any`. Use `unknown` and narrow via type guards or schema validation (Zod) before access
+- Avoid type assertions (`as T`). Allowed without justification: `as const`, DOM narrowing after a known query (`as HTMLElement`), and assertions made immediately after a runtime check. Any other `as` requires a one-line comment explaining why it's safe
+- Never use double assertions (`as unknown as T`). They bypass TS entirely
+- Never use the non-null operator `!` unless the value is structurally guaranteed in the surrounding scope
+
+Interfaces vs types:
+- Default to `interface` for object shapes
+- Use `type` for unions, intersections, primitives, and mapped or conditional types
+
+Generics:
+- Use generics when the return type depends on the input type. Otherwise use `unknown`
+- Constrain with `extends` whenever the body relies on a shape: `<T extends { id: string }>`
+
+Nullability:
+- At boundaries: throw a domain error or return a typed Result (`{ ok: true; value } | { ok: false; error }`) rather than silently returning `null` or `undefined`
+- Internally: `null` and `undefined` are fine when they carry meaning (e.g. "not loaded yet")
+- Use `field?: T` for "may be absent at declaration". Use `T | null` for "explicitly set to absent"
+
+Enumerations:
+- Prefer string literal unions: `type Status = 'idle' | 'loading' | 'ready'`
+- Avoid `enum`. Never use `const enum`. If a third-party API forces an enum, define every value explicitly
+
+Errors:
+- In `catch`, narrow `error: unknown` via `instanceof Error` before access
+
+Modern features:
+- `satisfies T` over `as T` when verifying conformance without widening literals
+- Discriminated unions (one shared literal field per variant) for state modeling

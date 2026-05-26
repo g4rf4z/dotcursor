@@ -1,0 +1,30 @@
+---
+description: APPLY Clean Code principles WHEN writing JS or TS family code
+globs: **/*.{ts,tsx,js,jsx,vue,svelte,mjs,cjs}
+alwaysApply: false
+---
+
+Code quality:
+- Use named constants for any meaningful number, string, or boolean. No magic values
+- Apply DRY pragmatically. Two similar blocks can stay; three is a refactor signal
+- Prefer the obvious solution over the clever one when both work
+
+Organization:
+- One responsibility per file. Split when concerns drift apart
+- Declare constants at the narrowest scope where they are used
+- Group related constants together inside an object literal when they share a domain
+
+Function design:
+- A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
+- Short, well-named helpers beat long inline complexity. Length is a smoke detector; what matters is whether the body matches the function name
+- Linear functions can be long (exhaustive switches, sequential setup). Tangled functions are bad at any length
+- Keep parameters few. When you exceed a handful, group related arguments into an options object
+- No flag parameters. Boolean arguments that change behavior should become two functions or a discriminated union
+- Use early returns to flatten nesting
+- Prefer `async` functions and `await` over Promise `.then()` chaining
+
+Errors:
+- Throw early. Do not defer failure to a later layer
+- Use custom domain error subclasses of the built-in `Error` (e.g. `NotFoundError`, `ValidationError`)
+- Log errors in English with a stable error code
+- Translate user-facing error messages only at the presentation layer

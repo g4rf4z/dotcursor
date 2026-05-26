@@ -1,0 +1,19 @@
+---
+description: APPLY TypeScript naming conventions WHEN writing TS code
+globs: **/*.ts, **/*.tsx
+alwaysApply: false
+---
+
+Type naming suffixes:
+- `Props` for component prop shapes (React, Vue)
+- `Options` for configuration objects passed to constructors or functions
+- `Params` for parameter bags (URL, query, function arguments)
+- `Response` for HTTP or RPC response shapes
+- `Result` for operation outcomes (success or failure wrappers)
+- `State` for reactive or component state shapes
+- `Error` for subclasses of the built-in `Error`
+
+Generic type parameters:
+- Bare `T` is fine for trivial single-parameter generics: `identity<T>(x: T): T`
+- For multiple parameters or domain meaning, prefix with `T` and name it: `<TKey, TValue>`, `<TInput, TOutput>`
+- Never use bare `U`, `V`, `W`. They tell the reader nothing

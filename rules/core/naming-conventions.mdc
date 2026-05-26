@@ -1,0 +1,29 @@
+---
+description: APPLY naming conventions WHEN writing JS or TS family code
+globs: **/*.{ts,tsx,js,jsx,vue,svelte,mjs,cjs}
+alwaysApply: false
+---
+
+General principles:
+- Use descriptive names that reveal intent at the call site
+- No single-letter names except loop counters (`i`, `j`, `k`)
+- No abbreviations except those universally understood (`id`, `url`, `api`, `http`, `db`)
+- Use one term per concept across the codebase. Pick one of `fetch`, `get`, or `load` for a given role and stay consistent
+
+Files:
+- Use `kebab-case` for filenames (e.g. `user-service.ts`, `app-header.vue`)
+
+Functions and methods:
+- Verb-first for actions: `fetchUser`, `parseInput`, `sendEmail`
+- Noun or `get*` for side-effect-free getters and computed values: `userName`, `getCurrentTime`
+- Prefix booleans and boolean-returning functions with `is`, `has`, `should`, or `can`: `isReady`, `hasAccess`, `shouldRetry`
+
+Classes and types:
+- Use `PascalCase`
+
+Variables and properties:
+- Use `camelCase`
+- Pluralize arrays and other collections: `users`, `items`, `errors`
+
+Constants:
+- Use `UPPER_SNAKE_CASE`
