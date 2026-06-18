@@ -1,6 +1,5 @@
 ---
-description: APPLY naming conventions WHEN writing JS or TS family code
-globs: **/*.{ts,tsx,js,jsx,vue,svelte,mjs,cjs}
+globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.svelte, **/*.ts, **/*.tsx, **/*.vue
 alwaysApply: false
 ---
 
