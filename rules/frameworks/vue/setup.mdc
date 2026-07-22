@@ -1,0 +1,15 @@
+---
+globs: **/*.vue, **/composables/*.ts
+alwaysApply: false
+---
+
+API style:
+- Use exclusively Composition API with `<script setup lang="ts">`
+- Never use Options API (`data()`, `methods:`, `computed:` as object properties, `this`)
+- Never use `defineComponent()` with an options object
+- Never use mixins; replace with composables (`use*` functions in `composables/`)
+
+Script setup:
+- Always declare `lang="ts"` on the `<script setup>` block
+- Vue APIs (`ref`, `computed`, `watch`, lifecycle hooks) are imported directly or auto-imported by Nuxt
+- Top-level variables, functions, and imports in `<script setup>` are automatically available in the template

@@ -1,0 +1,21 @@
+---
+globs: **/*.vue
+alwaysApply: false
+---
+
+Template refs:
+- Use `useTemplateRef<HTMLInputElement>('input')` (3.5+) for typed DOM refs
+- For component refs, use `InstanceType<typeof MyComponent>` as the generic argument
+- Use optional chaining on template ref values since they are `null` until mount
+
+Ref typing:
+- Let `ref()` infer the type from the initial value when possible
+- Use a generic for union types: `ref<string | number>('hello')`
+- Avoid `Ref<T>` annotation when generic argument suffices
+
+Computed typing:
+- Let `computed()` infer the return type from the getter
+- Use a generic only when the return type cannot be inferred: `computed<number>(() => ...)`
+
+Event handlers:
+- Annotate native DOM event handlers with `Event` and narrow `event.target` with `as HTMLInputElement`

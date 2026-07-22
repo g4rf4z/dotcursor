@@ -1,0 +1,31 @@
+---
+globs: **/*.vue, **/composables/*.ts
+alwaysApply: false
+---
+
+Refs:
+- Use `ref()` as the primary API for declaring reactive state
+- Avoid `reactive()` for top-level state; it cannot hold primitives, loses reactivity on destructure, and cannot be reassigned
+- Use `reactive()` only to wrap a returned composable object for ref unwrapping in templates
+
+Computed:
+- Use `computed()` for derived values; keep getter functions pure with no side effects
+- Never mutate other refs inside a computed getter
+- Return the previous value from computed when the result is structurally equal to avoid unnecessary triggers
+
+Watchers:
+- Use `watch()` for explicit dependency tracking with precise control over when the callback fires
+- Use `watchEffect()` when the callback naturally accesses all its dependencies and should run eagerly
+- Always use a getter `() => obj.prop` to watch a property of a reactive object, not the raw value
+- Use `onWatcherCleanup()` or the `onCleanup` callback parameter to cancel stale async operations (e.g. `AbortController`)
+- Prefer `flush: 'post'` when accessing the owner component's updated DOM in the callback
+
+Shallow APIs:
+- Use `shallowRef()` for large immutable data structures to avoid deep proxy overhead
+- With `shallowRef`, trigger updates by replacing the root value, not mutating nested properties
+- Use `shallowReactive()` only when root-level-only tracking is explicitly needed
+
+Utilities:
+- Use `toValue()` to normalize ref, getter, or plain value inputs in composables
+- Use `toRefs()` when destructuring a reactive object to preserve reactivity per property
+- Use `nextTick()` to wait for the DOM update after a state mutation

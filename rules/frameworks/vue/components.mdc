@@ -1,0 +1,36 @@
+---
+globs: **/*.vue
+alwaysApply: false
+---
+
+Props:
+- Declare props with type-based `defineProps<T>()` syntax, not runtime declaration
+- Use Reactive Props Destructure with JS default values: `const { foo = 'bar' } = defineProps<Props>()`
+- Never mutate props directly; derive local state with `ref(props.initial)` or `computed(() => props.value)`
+- Pass destructured props into functions or composables via getter: `useComposable(() => foo)`
+
+Emits:
+- Declare emits with type-based `defineEmits<T>()` using labeled tuple syntax: `{ change: [id: number] }`
+- Store the return as `const emit = defineEmits<T>()` and call `emit('eventName', payload)`
+- Always declare all emitted events explicitly to avoid fallthrough attribute conflicts
+
+v-model:
+- Use `defineModel<T>()` for two-way binding instead of manual prop + emit pattern
+- Support multiple v-model bindings with named models: `defineModel<string>('title')`
+
+Slots:
+- Use `defineSlots<T>()` for type-safe scoped slots
+- Prefer named slots over complex prop-passing for layout composition
+
+Provide / Inject:
+- Type injection keys with `InjectionKey<T>` from Vue and place them in a shared file
+- Always provide a default value or throw a meaningful error when injecting
+
+Expose:
+- Use `defineExpose()` only when parent components must imperatively access child state or methods
+- Keep the exposed surface minimal
+
+Template conventions:
+- Use PascalCase for component tags in SFC templates: `<MyComponent />`
+- Use kebab-case for prop bindings in templates: `<MyComponent greeting-message="hello" />`
+- Use kebab-case for event listeners: `@some-event`

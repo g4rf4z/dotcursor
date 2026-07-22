@@ -1,0 +1,31 @@
+---
+globs: **/composables/*.ts, **/*.vue
+alwaysApply: false
+---
+
+Naming:
+- Name composable functions with camelCase starting with `use`: `useMouse`, `useAuth`
+- Place composable files in `composables/` directory
+
+Structure:
+- Encapsulate stateful logic: declare refs, computed, watchers, and lifecycle hooks inside the function
+- Compose composables together; pass output of one as input to another
+
+Inputs:
+- Accept `Ref`, getter, or plain values as arguments for maximum flexibility
+- Normalize inputs with `toValue()` inside watchers or `watchEffect` so dependencies are tracked
+- If the composable creates reactive effects, explicitly `watch()` or use `toValue()` inside `watchEffect()`
+
+Return values:
+- Always return a plain object containing refs, not a reactive object
+- This allows consumers to destructure while retaining reactivity: `const { x, y } = useMouse()`
+
+Side effects:
+- Perform DOM-specific side effects in `onMounted()` for SSR compatibility
+- Clean up side effects (event listeners, timers, subscriptions) in `onUnmounted()`
+- Extract event listener setup into a helper composable (e.g. `useEventListener`) for automatic cleanup
+
+Lifecycle restrictions:
+- Call composables synchronously inside `<script setup>` or `setup()` only
+- Never call composables inside `setTimeout`, `setInterval`, or after a non-setup `await`
+- In `<script setup>`, composables can be called after `await` (compiler restores context)

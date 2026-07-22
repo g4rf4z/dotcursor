@@ -1,0 +1,22 @@
+---
+globs: **/*.vue, **/composables/*.ts
+alwaysApply: false
+---
+
+Code splitting:
+- Use `defineAsyncComponent(() => import('./Heavy.vue'))` for components not needed at initial load
+- Lazy-load route components (Vue Router or Nuxt file-based routing handles this automatically)
+
+Rendering:
+- Use `v-once` for content that relies on runtime data but never updates
+- Use `v-memo` to conditionally skip re-rendering of large sub-trees or `v-for` lists
+- Keep props passed to child components as stable as possible to avoid unnecessary re-renders
+- Prefer a computed boolean prop (`active`) over passing a shared reactive id to every list item
+
+Component abstractions:
+- Avoid unnecessary wrapper or renderless components in large lists; each instance has non-trivial overhead
+- Prefer composables over renderless components for pure logic reuse
+
+Lists:
+- Virtualize large lists (1000+ items) using a library like `@tanstack/vue-virtual` or `vue-virtual-scroller`
+- Always provide a stable, unique `:key` on `v-for` items
