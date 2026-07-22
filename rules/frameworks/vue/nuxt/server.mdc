@@ -1,0 +1,29 @@
+---
+globs: **/server/**/*.ts, **/nuxt.config.ts
+alwaysApply: false
+---
+
+API routes:
+- Define server endpoints in `server/api/` using `defineEventHandler()`
+- File path maps to URL: `server/api/users.ts` → `/api/users`
+- Return text, JSON, HTML, or a stream directly from the handler
+- Use `server/routes/` for non-API server routes
+
+Server middleware:
+- Place in `server/middleware/`; runs on every server request before route handlers
+- Server middleware is distinct from route middleware (which runs in the Vue layer)
+
+Server utilities:
+- Place shared server logic in `server/utils/`; files are auto-imported in the server context
+- Never import server-only code in app code; the server directory is isolated
+
+Hybrid rendering:
+- Configure `routeRules` in `nuxt.config.ts` to mix rendering strategies per route
+- Use `{ prerender: true }` for static pages generated at build time
+- Use `{ cache: { maxAge: 3600 } }` for ISR-style caching
+- Use `{ ssr: false }` to disable SSR for specific routes (SPA mode)
+- Use `{ redirect: { to: '/new', statusCode: 301 } }` for server-side redirects
+
+Request utilities:
+- Use h3 utilities (`getQuery`, `readBody`, `getHeader`, `parseCookies`, `createError`) for request handling
+- Throw errors with `createError({ statusCode: 404, statusMessage: 'Not Found' })`

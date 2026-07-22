@@ -1,0 +1,31 @@
+---
+globs: **/*.vue, **/composables/*.ts
+alwaysApply: false
+---
+
+Choosing the right API:
+- Use `useFetch(url)` for SSR-safe data fetching from Nuxt API routes or external URLs; it deduplicates between server and client
+- Use `useAsyncData(key, () => fn())` when the data source is not a simple URL (CMS SDK, third-party client, aggregated queries)
+- Use `$fetch` only for client-side interactions (form submissions, event handlers); never in `setup()` alone as it causes double-fetching on SSR
+
+Keys and caching:
+- Always provide an explicit string key to `useAsyncData` to avoid collisions and enable shared state: `useAsyncData('user:123', ...)`
+- Components sharing the same key share `data`, `error`, and `status` refs; keep handler, `deep`, `transform`, `pick`, `default` consistent across calls
+
+Payload optimization:
+- Use `pick` to select only the fields used in the template and reduce SSR payload size
+- Use `transform` for reshaping data before it enters the payload
+
+Reactive URLs:
+- Pass reactive query params as refs in the `query` option; Nuxt watches them automatically
+- Use a getter function for dynamic URL construction: ``useFetch(() => `/api/users/${id.value}`)``
+
+Lazy and non-blocking:
+- Use `useLazyFetch` or `{ lazy: true }` when data is not needed before navigation (non-SEO content)
+- Handle loading state via `status` ref (`'idle'`, `'pending'`, `'success'`, `'error'`)
+- Prefer explicit `lazy` option over simply not awaiting to make intent clear
+
+Execution control:
+- Use `{ immediate: false }` to defer fetching until `execute()` is called manually
+- Use `{ server: false }` for client-only data that should not be fetched during SSR
+- Use `refresh()` / `execute()` for manual refetching; use `clear()` to reset state

@@ -1,0 +1,21 @@
+---
+globs: **/*.vue, **/composables/*.ts, **/utils/*.ts, **/server/**/*.ts
+alwaysApply: false
+---
+
+Built-in auto-imports:
+- Vue APIs (`ref`, `computed`, `watch`, lifecycle hooks) and Nuxt composables (`useFetch`, `useRoute`, `useState`, etc.) are auto-imported globally
+- Never manually import what Nuxt auto-imports; rely on the auto-import or use `#imports` for explicit imports
+- Use `#imports` alias when you need an explicit import for clarity or tooling reasons
+
+Directory auto-imports:
+- `app/components/` — Vue components (available in templates without import)
+- `app/composables/` — composable functions (available everywhere in app code)
+- `app/utils/` — helper functions and utilities (available everywhere in app code)
+- `server/utils/` — auto-imported in server context only
+
+Lifecycle context:
+- Composables relying on Nuxt context must be called inside `<script setup>`, `setup()`, Nuxt plugins, or route middleware
+- Never call Nuxt composables at module top-level outside these contexts: `const config = useRuntimeConfig()` at file root causes errors
+- Wrap Nuxt composable calls inside the composable function body: `export const useX = () => { const config = useRuntimeConfig(); ... }`
+- In `<script setup>`, composables can be called after `await` (compiler handles context restoration)
