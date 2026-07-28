@@ -10,6 +10,7 @@ Naming:
 Structure:
 - Encapsulate stateful logic: declare refs, computed, watchers, and lifecycle hooks inside the function
 - Compose composables together; pass output of one as input to another
+- Extract composables to organize a single large component's logic into focused, named units, not only to reuse logic across components
 
 Inputs:
 - Accept `Ref`, getter, or plain values as arguments for maximum flexibility

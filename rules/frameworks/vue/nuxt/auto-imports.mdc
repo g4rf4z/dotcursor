@@ -15,7 +15,6 @@ Directory auto-imports:
 - `server/utils/` — auto-imported in server context only
 
 Lifecycle context:
-- Composables relying on Nuxt context must be called inside `<script setup>`, `setup()`, Nuxt plugins, or route middleware
+- Composables relying on Nuxt context must be called inside `<script setup>`, `setup()`, Nuxt plugins, or route middleware (see composables.mdc for the general script-setup/await rule)
 - Never call Nuxt composables at module top-level outside these contexts: `const config = useRuntimeConfig()` at file root causes errors
 - Wrap Nuxt composable calls inside the composable function body: `export const useX = () => { const config = useRuntimeConfig(); ... }`
-- In `<script setup>`, composables can be called after `await` (compiler handles context restoration)
