@@ -1,5 +1,5 @@
 ---
-globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.svelte, **/*.ts, **/*.tsx, **/*.vue
+globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.ts, **/*.tsx, **/*.vue
 alwaysApply: false
 ---
 
@@ -23,7 +23,7 @@ Function design:
 - Prefer `async` functions and `await` over Promise `.then()` chaining
 
 Errors:
-- Throw early. Do not defer failure to a later layer
+- Throw early unexpected states. Do not defer failure to a later layer
 - Use custom domain error subclasses of the built-in `Error` (e.g. `NotFoundError`, `ValidationError`)
 - Log errors in English with a stable error code
 - Translate user-facing error messages only at the presentation layer

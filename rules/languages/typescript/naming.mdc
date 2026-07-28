@@ -3,14 +3,14 @@ globs: **/*.ts, **/*.tsx
 alwaysApply: false
 ---
 
-Type naming suffixes:
-- `Props` for component prop shapes (React, Vue)
-- `Options` for configuration objects passed to constructors or functions
-- `Params` for parameter bags (URL, query, function arguments)
-- `Response` for HTTP or RPC response shapes
-- `Result` for operation outcomes (success or failure wrappers)
-- `State` for reactive or component state shapes
-- `Error` for subclasses of the built-in `Error`
+Type suffixes:
+- Use `Props` for component prop shapes
+- Use `Options` for configuration objects passed to functions or constructors
+- Use `Params` for parameter bags (URL, query, function arguments)
+- Use `Response` for HTTP or RPC response shapes
+- Use `Result` for operation outcomes (success or failure wrappers)
+- Use `State` for component or reactive state shapes
+- Use `Error` for subclasses of the built-in `Error`
 
 Generic type parameters:
 - Bare `T` is fine for trivial single-parameter generics: `identity<T>(x: T): T`

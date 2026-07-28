@@ -20,6 +20,7 @@ Generics:
 
 Nullability:
 - At boundaries: throw a domain error or return a typed Result (`{ ok: true; value } | { ok: false; error }`) rather than silently returning `null` or `undefined`
+- Throw for unexpected states or violated invariants (bugs); return a typed Result for expected, recoverable failures the caller must branch on (validation, network calls, parsing)
 - Internally: `null` and `undefined` are fine when they carry meaning (e.g. "not loaded yet")
 - Use `field?: T` for "may be absent at declaration". Use `T | null` for "explicitly set to absent"
 

@@ -1,5 +1,5 @@
 ---
-globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.svelte, **/*.ts, **/*.tsx, **/*.vue
+globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.ts, **/*.tsx, **/*.vue
 alwaysApply: false
 ---
 
