@@ -3,34 +3,52 @@ globs: **/*.vue
 alwaysApply: false
 ---
 
+Template conventions:
+- Use PascalCase for component tags in SFC templates: `<MyComponent />`; kebab-case tags resolve to the same component since SFC compilation isn't case-sensitive
+- Use kebab-case for prop bindings (`greeting-message`) and event listeners (`@some-event`) as a style convention, not a requirement; only in-DOM templates force kebab-case due to HTML's case-insensitivity
+- Use `<component :is="...">` for dynamic components, passing either a registered component name or the imported component object
+- Avoid global registration (`app.component()`); import and use components locally to keep dependencies explicit and tree-shakable
+
 Props:
-- Declare props with type-based `defineProps<T>()` syntax, not runtime declaration
-- Use Reactive Props Destructure with JS default values: `const { foo = 'bar' } = defineProps<Props>()`
+- Declare props with runtime declaration: `defineProps({ foo: { type: String, required: true } })`
+- Use `default` for fallback values and `validator(value)` for custom validation logic beyond `type`/`required`
+- Order `Boolean` before other types in a multi-type array (`[Boolean, String]`); the reverse order breaks boolean attribute casting
+- Use Reactive Props Destructure with default values (Vue 3.5+): `const { foo = 'bar' } = defineProps({ foo: String })`; on 3.4 and earlier, destructured props don't react to changes
 - Never mutate props directly; derive local state with `ref(props.initial)` or `computed(() => props.value)`
 - Pass destructured props into functions or composables via getter: `useComposable(() => foo)`
 
 Emits:
-- Declare emits with type-based `defineEmits<T>()` using labeled tuple syntax: `{ change: [id: number] }`
-- Store the return as `const emit = defineEmits<T>()` and call `emit('eventName', payload)`
+- Declare emits with `defineEmits([...])`, or the validated object form `defineEmits({ change: (id) => true })`
+- Store the return as `const emit = defineEmits(...)` and call `emit('eventName', payload)`
 - Always declare all emitted events explicitly to avoid fallthrough attribute conflicts
 
 v-model:
-- Use `defineModel<T>()` for two-way binding instead of manual prop + emit pattern
-- Support multiple v-model bindings with named models: `defineModel<string>('title')`
+- Use `defineModel()` (Vue 3.4+) for two-way binding instead of manual prop + emit pattern
+- Support multiple v-model bindings with named models: `defineModel('title')`
+- Use built-in modifiers (`.trim`, `.number`, `.lazy`) or custom modifiers via `const [model, modifiers] = defineModel()` for input transforms
+- Use `defineModel({ default: ... })` and `defineModel({ required: true })` for fallback and validation, same as prop options
+
+Attrs:
+- Use `defineOptions({ inheritAttrs: false })` to disable automatic attribute inheritance when you need full control over where attrs land
+- Use `useAttrs()` to access fallthrough attributes reactively in `<script setup>`, or `$attrs` in the template
+- Bind `v-bind="$attrs"` explicitly on the intended element in multi-root components; Vue cannot auto-apply fallthrough attrs when there's more than one root element
 
 Slots:
-- Use `defineSlots<T>()` for type-safe scoped slots
 - Prefer named slots over complex prop-passing for layout composition
+- Provide fallback content inside `<slot>` for when the parent doesn't pass that slot
+- Use scoped slots to pass data from child to parent: child binds `<slot :count="count" />`, parent receives via `v-slot="{ count }"`
+- Use dynamic slot names (`#[dynamicSlotName]`) or `v-if="$slots.header"` for conditional slot rendering
 
 Provide / Inject:
-- Type injection keys with `InjectionKey<T>` from Vue and place them in a shared file
+- Place the injection key in a shared file so it can be imported in multiple components
 - Always provide a default value or throw a meaningful error when injecting
+- Provide refs or computed values to keep the injected state reactive; wrap it in `readonly()` so only the provider can mutate it, exposing provider-owned methods for consumers to request changes
+
+Async components:
+- Use the options object form for loading/error UX: `defineAsyncComponent({ loader, loadingComponent, errorComponent, delay, timeout })`
+- Set `delay` to avoid a loading-state flash on fast connections, and `timeout` to fall back to `errorComponent` if loading takes too long
+- Use the `onError(error, retry, fail)` callback to retry a failed load conditionally, or call `fail()` to give up and render `errorComponent`
 
 Expose:
 - Use `defineExpose()` only when parent components must imperatively access child state or methods
 - Keep the exposed surface minimal
-
-Template conventions:
-- Use PascalCase for component tags in SFC templates: `<MyComponent />`
-- Use kebab-case for prop bindings in templates: `<MyComponent greeting-message="hello" />`
-- Use kebab-case for event listeners: `@some-event`
