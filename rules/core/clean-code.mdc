@@ -10,7 +10,6 @@ Code quality:
 Organization:
 - One responsibility per file. Split when concerns drift apart
 - Declare constants at the narrowest scope where they are used
-- Group related constants together inside an object literal when they share a domain
 
 Function design:
 - A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
@@ -19,7 +18,6 @@ Function design:
 - Keep parameters few. When you exceed a handful, group related arguments into an options object
 - No flag parameters. Boolean arguments that change behavior should become two functions instead
 - Use early returns to flatten nesting
-- Prefer `async` functions and `await` over Promise `.then()` chaining
 
 Errors:
 - Throw early unexpected states. Do not defer failure to a later layer
