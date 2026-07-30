@@ -1,6 +1,5 @@
 ---
-globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.ts, **/*.tsx, **/*.vue
-alwaysApply: false
+alwaysApply: true
 ---
 
 Code quality:
@@ -18,12 +17,12 @@ Function design:
 - Short, well-named helpers beat long inline complexity. Length is a smoke detector; what matters is whether the body matches the function name
 - Linear functions can be long (exhaustive switches, sequential setup). Tangled functions are bad at any length
 - Keep parameters few. When you exceed a handful, group related arguments into an options object
-- No flag parameters. Boolean arguments that change behavior should become two functions or a discriminated union
+- No flag parameters. Boolean arguments that change behavior should become two functions instead
 - Use early returns to flatten nesting
 - Prefer `async` functions and `await` over Promise `.then()` chaining
 
 Errors:
 - Throw early unexpected states. Do not defer failure to a later layer
-- Use custom domain error subclasses of the built-in `Error` (e.g. `NotFoundError`, `ValidationError`)
+- Prefer typed, domain-specific error types over generic failures (e.g. `NotFoundError`, `ValidationError`)
 - Log errors in English with a stable error code
 - Translate user-facing error messages only at the presentation layer
