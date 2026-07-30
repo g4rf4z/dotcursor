@@ -3,6 +3,8 @@ globs: **/*.vue, **/composables/**/*.ts
 alwaysApply: false
 ---
 
+Applies to `.vue` files only when the script block uses `lang="ts"`; skip these rules in JavaScript components.
+
 Script setup:
 - Declare `lang="ts"` on the `<script setup>` block
 
