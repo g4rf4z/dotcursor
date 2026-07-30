@@ -10,21 +10,16 @@ Choosing the right API:
 
 Keys and caching:
 - Always provide an explicit string key to `useAsyncData` to avoid collisions and enable shared state: `useAsyncData('user:123', ...)`
-- Components sharing the same key share `data`, `error`, and `status` refs; keep handler, `deep`, `transform`, `pick`, `default` consistent across calls
+- When multiple calls share a key, keep `handler`, `deep`, `transform`, `pick`, and `default` consistent across them
 
 Payload optimization:
 - Use `pick` to select only the fields used in the template and reduce SSR payload size
 - Use `transform` for reshaping data before it enters the payload
 
 Reactive URLs:
-- Pass reactive query params as refs in the `query` option; Nuxt watches them automatically
+- Pass reactive query params as refs in the `query` option so the request refetches on change
 - Use a getter function for dynamic URL construction: ``useFetch(() => `/api/users/${id.value}`)``
 
 Lazy and non-blocking:
 - Use `useLazyFetch` or `{ lazy: true }` when data is not needed before navigation (non-SEO content)
 - Prefer explicit `lazy` option over simply not awaiting to make intent clear
-
-Execution control:
-- Use `{ immediate: false }` to defer fetching until `execute()` is called manually
-- Use `{ server: false }` for client-only data that should not be fetched during SSR
-- Use `refresh()` / `execute()` for manual refetching; use `clear()` to reset state

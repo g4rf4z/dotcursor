@@ -5,7 +5,6 @@ alwaysApply: false
 
 useState:
 - Use `useState<T>(key, () => initialValue)` as the SSR-friendly replacement for `ref()` when sharing state across components
-- Value is preserved during hydration (server → client) and shared across all components using the same key
 - Value must be JSON-serializable: no classes, functions, or symbols
 
 Shared state safety:
@@ -18,6 +17,3 @@ Initialization:
 
 Pinia:
 - Define stores with `defineStore()` using the setup syntax for Composition API consistency
-
-Clearing state:
-- Use `clearNuxtState(key)` to globally invalidate a specific `useState` entry

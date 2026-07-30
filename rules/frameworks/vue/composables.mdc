@@ -8,8 +8,6 @@ Naming:
 - Place composable files in `composables/` directory
 
 Structure:
-- Encapsulate stateful logic: declare refs, computed, watchers, and lifecycle hooks inside the function
-- Compose composables together; pass output of one as input to another
 - Extract composables to organize a single large component's logic into focused, named units, not only to reuse logic across components
 
 Inputs:
@@ -18,8 +16,7 @@ Inputs:
 - If the composable creates reactive effects, explicitly `watch()` or use `toValue()` inside `watchEffect()`
 
 Return values:
-- Always return a plain object containing refs, not a reactive object
-- This allows consumers to destructure while retaining reactivity: `const { x, y } = useMouse()`
+- Always return a plain object containing refs, not a reactive object, so consumers can destructure while retaining reactivity
 
 Side effects:
 - Perform DOM-specific side effects in `onMounted()` for SSR compatibility

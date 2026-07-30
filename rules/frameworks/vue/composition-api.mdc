@@ -8,6 +8,3 @@ API style:
 - Never use Options API (`data()`, `methods:`, `computed:` as object properties, `this`)
 - Never use `defineComponent()` with an options object
 - Never use mixins; replace with composables (`use*` functions in `composables/`)
-
-Template access:
-- Top-level variables, functions, and imports in `<script setup>` are automatically available in the template
