@@ -1,5 +1,5 @@
 ---
-globs: **/*.vue, **/composables/**/*.ts
+globs: **/*.vue, **/composables/**/*.js, **/composables/**/*.ts
 alwaysApply: false
 ---
 
@@ -27,5 +27,4 @@ Watchers:
 - Prefer `flush: 'post'` when accessing the owner component's updated DOM in the callback
 
 Utilities:
-- Use `toValue()` to normalize ref, getter, or plain value inputs in composables
 - Use `toRefs()` when destructuring a reactive object to preserve reactivity per property

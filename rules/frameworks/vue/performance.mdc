@@ -1,5 +1,5 @@
 ---
-globs: **/*.vue, **/composables/**/*.ts
+globs: **/*.vue, **/composables/**/*.js, **/composables/**/*.ts
 alwaysApply: false
 ---
 

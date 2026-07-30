@@ -1,7 +1,9 @@
 ---
-globs: **/*.ts, **/*.tsx
+globs: **/*.ts, **/*.tsx, **/*.vue
 alwaysApply: false
 ---
+
+Applies to `.vue` files only when the script block uses `lang="ts"`.
 
 Type suffixes:
 - Use `Props` for component prop shapes

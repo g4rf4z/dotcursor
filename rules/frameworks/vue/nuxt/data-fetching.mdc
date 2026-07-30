@@ -1,5 +1,5 @@
 ---
-globs: **/*.vue, **/composables/*.ts
+globs: **/pages/**/*.vue, **/layouts/**/*.vue, **/app.vue, **/composables/**/*.js, **/composables/**/*.ts
 alwaysApply: false
 ---
 
@@ -22,7 +22,6 @@ Reactive URLs:
 
 Lazy and non-blocking:
 - Use `useLazyFetch` or `{ lazy: true }` when data is not needed before navigation (non-SEO content)
-- Handle loading state via `status` ref (`'idle'`, `'pending'`, `'success'`, `'error'`)
 - Prefer explicit `lazy` option over simply not awaiting to make intent clear
 
 Execution control:

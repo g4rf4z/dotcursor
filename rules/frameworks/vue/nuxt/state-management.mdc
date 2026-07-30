@@ -1,5 +1,5 @@
 ---
-globs: **/*.vue, **/composables/*.ts
+globs: **/app.vue, **/layouts/**/*.vue, **/pages/**/*.vue, **/composables/**/*.js, **/composables/**/*.ts
 alwaysApply: false
 ---
 
@@ -17,9 +17,7 @@ Initialization:
 - Do not use `useAsyncData` to trigger side effects like Pinia actions; use `callOnce` instead
 
 Pinia:
-- Use Pinia (`@pinia/nuxt` module) for complex state management with actions, getters, and devtools support
 - Define stores with `defineStore()` using the setup syntax for Composition API consistency
-- Access stores inside `<script setup>` or composables; Pinia handles SSR serialization automatically
 
 Clearing state:
 - Use `clearNuxtState(key)` to globally invalidate a specific `useState` entry

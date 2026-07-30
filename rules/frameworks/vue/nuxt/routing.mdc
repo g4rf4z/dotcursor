@@ -1,11 +1,9 @@
 ---
-globs: **/pages/**/*.vue, **/middleware/**/*.ts
+globs: **/nuxt.config.js, **/nuxt.config.ts, **/app.vue, **/pages/**/*.vue, **/layouts/**/*.vue, **/middleware/**/*.js, **/middleware/**/*.ts
 alwaysApply: false
 ---
 
 File-based routing:
-- Place page components in `app/pages/`; Nuxt generates routes from the filename structure
-- Use `[param]` for dynamic segments and `[...slug]` for catch-all routes
 - Code splitting is automatic per route; do not disable it unless measured beneficial
 
 Navigation:
@@ -13,17 +11,5 @@ Navigation:
 - Never use plain `<a>` tags or manual `router.push()` for declarative navigation
 - Use `navigateTo()` for programmatic navigation inside middleware, event handlers, or composables
 
-Route parameters:
-- Access route params with `useRoute().params` inside `<script setup>`
-- Type dynamic params via `definePageMeta` or narrowing in the script block
-
 Middleware:
-- Anonymous: define inline in the page with `definePageMeta({ middleware: (to, from) => { ... } })`
-- Named: place in `app/middleware/` as `auth.ts`; reference by kebab-case name in `definePageMeta`
-- Global: suffix file with `.global.ts` in `app/middleware/`; runs on every route change
-- Route middleware runs in the Vue layer; do not confuse with server middleware (`server/middleware/`)
-- Return `navigateTo('/login')` or `abortNavigation()` from middleware to control flow
-
-Page meta and validation:
-- Use `definePageMeta()` for layout, middleware, transition, and keepalive configuration
-- Use `validate` property inside `definePageMeta` to reject invalid route params (return `false` for 404)
+- Named middleware (`app/middleware/foo.ts`) and global middleware (`app/middleware/foo.global.ts`) both run in the Vue layer; server middleware (`server/middleware/`) is a separate mechanism (see server.mdc)
