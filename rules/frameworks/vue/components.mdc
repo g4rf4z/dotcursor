@@ -3,6 +3,9 @@ globs: **/*.vue
 alwaysApply: false
 ---
 
+Files:
+- Use `PascalCase` for SFC filenames (e.g. `AppHeader.vue`), matching the component name used in templates
+
 Template conventions:
 - Use PascalCase for component tags in SFC templates: `<MyComponent />`; kebab-case tags resolve to the same component since SFC compilation isn't case-sensitive
 - Use kebab-case for prop bindings (`greeting-message`) and event listeners (`@some-event`) as a style convention, not a requirement; only in-DOM templates force kebab-case due to HTML's case-insensitivity

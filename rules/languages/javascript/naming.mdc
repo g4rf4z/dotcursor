@@ -4,7 +4,7 @@ alwaysApply: false
 ---
 
 Files:
-- Use `kebab-case` for filenames (e.g. `user-service.ts`, `app-header.vue`)
+- Use `kebab-case` for filenames (e.g. `user-service.ts`, `date-utils.ts`)
 
 Functions and methods:
 - Verb-first for actions: `fetchUser`, `parseInput`, `sendEmail`
@@ -12,7 +12,7 @@ Functions and methods:
 - Prefix booleans and boolean-returning functions with `is`, `has`, `should`, or `can`: `isReady`, `hasAccess`, `shouldRetry`
 
 Classes and types:
-- Use `PascalCase` for classes, components, and type-like names
+- Use `PascalCase` for classes and type-like names
 
 Variables and properties:
 - Use `camelCase`
