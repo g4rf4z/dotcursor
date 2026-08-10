@@ -12,7 +12,9 @@ Clone once:
 git clone https://github.com/g4rf4z/dotcursor.git ~/dev/dotcursor
 ```
 
-**Cursor** — link the repo as a local plugin:
+**Cursor**
+
+Global, for every project on your machine — link the repo as a local plugin:
 
 ```bash
 ln -s ~/dev/dotcursor ~/.cursor/plugins/local/dotcursor
@@ -20,13 +22,27 @@ ln -s ~/dev/dotcursor ~/.cursor/plugins/local/dotcursor
 
 Then reload the window (`Developer: Reload Window`). Cursor reads `rules/` (`.mdc` files) at the plugin root.
 
-**Claude Code** — link the Claude-flavored rules into your rules directory:
+Scoped to a single project — link the rules into that project's rules directory instead:
+
+```bash
+mkdir -p .cursor/rules
+ln -s ~/dev/dotcursor/rules .cursor/rules/dotcursor
+```
+
+**Claude Code**
+
+Global, for every project on your machine — link the Claude-flavored rules into your rules directory:
 
 ```bash
 ln -s ~/dev/dotcursor/claude-rules ~/.claude/rules/dotcursor
 ```
 
-Use `~/.claude/rules/` for every project on your machine, or symlink into a single project's `.claude/rules/` instead if you only want it scoped there.
+Scoped to a single project — link into that project's rules directory instead:
+
+```bash
+mkdir -p .claude/rules
+ln -s ~/dev/dotcursor/claude-rules .claude/rules/dotcursor
+```
 
 ## Update
 
@@ -85,7 +101,7 @@ The `core/` rules apply unconditionally and need no adjustment.
 
 ## Notes
 
-- Cursor loads rules from the plugin's `rules/` directory once linked into `~/.cursor/plugins/local/`.
+- Cursor loads rules from the plugin's `rules/` directory once linked into `~/.cursor/plugins/local/`, or recursively from a project's own `.cursor/rules/` when scoped there instead.
 - Claude Code loads rules recursively from `.claude/rules/`, applying path-scoped ones (`paths:` frontmatter) only when a matching file is opened, and unconditional ones (no frontmatter) every session.
 - Edit rules only in this repo, never in a project's copy — there is no copy, both editors read through the symlink.
 
