@@ -12,7 +12,7 @@ Template conventions:
 - Avoid global registration (`app.component()`); import and use components locally to keep dependencies explicit and tree-shakable
 
 Props:
-- Declare props with runtime declaration by default: `defineProps({ foo: { type: String, required: true } })`; TypeScript projects use type-based `defineProps<T>()` instead (see typescript.md)
+- Declare props with runtime declaration by default: `defineProps({ foo: { type: String, required: true } })`
 - Use `default` for fallback values and `validator(value)` for custom validation logic beyond `type`/`required`
 - Order `Boolean` before other types in a multi-type array (`[Boolean, String]`); the reverse order breaks boolean attribute casting
 - Use Reactive Props Destructure with default values (Vue 3.5+): `const { foo = 'bar' } = defineProps({ foo: String })`; on 3.4 and earlier, destructured props don't react to changes

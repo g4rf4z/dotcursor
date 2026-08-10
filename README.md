@@ -79,7 +79,7 @@ claude-rules/               # Claude Code rules (.md), same funnel, same wording
 
 ## Adapting the globs to your layout
 
-Rules attach based on file path patterns, and the framework rules assume a Nuxt-style layout: `app/`, `pages/`, `layouts/`, `composables/`, `middleware/`, `server/`. If your project puts these elsewhere (for example everything under `src/`), edit the `globs` line in the affected `.mdc` file and the matching `paths:` list in its `claude-rules/` counterpart. A rule whose patterns never match simply never applies, with no warning.
+Rules attach based on file path patterns, and the framework rules assume Nuxt 4's default layout: `pages/`, `layouts/`, `composables/`, `middleware/`, and `utils/` nested under `app/`, with `server/` as the one top-level sibling. Every glob is prefixed with `**/`, so it matches these directories at any depth — Nuxt 3's flat layout (`pages/` at the root, no `app/`) still works with no edits needed. If your project puts these elsewhere still (for example everything under `src/`), edit the `globs` line in the affected `.mdc` file and the matching `paths:` list in its `claude-rules/` counterpart. A rule whose patterns never match simply never applies, with no warning.
 
 The `core/` rules apply unconditionally and need no adjustment.
 
