@@ -1,35 +1,47 @@
 # dotcursor
 
-Cursor plugin configuration shared across projects.
-
-## Install
-
-From any project root:
-
-```bash
-curl -s https://raw.githubusercontent.com/g4rf4z/dotcursor/main/install.sh | bash
-```
-
-## Update
-
-Same command. It replaces the entire `.cursor/` directory with the latest version from this repository:
-
-```bash
-curl -s https://raw.githubusercontent.com/g4rf4z/dotcursor/main/install.sh | bash
-```
-
-## Check installed version
-
-```bash
-cat .cursor/.version
-```
-
-## Structure
+Personal coding rules shared across projects and editors (Cursor and Claude Code).
 
 Rules compose as a funnel, from broad to specific: core → JavaScript baseline → TypeScript overlay (when applicable) → framework → framework TypeScript overlay (when applicable) → meta-framework.
 
+## Install
+
+Clone once:
+
+```bash
+git clone https://github.com/g4rf4z/dotcursor.git ~/dev/dotcursor
 ```
-rules/
+
+**Cursor** — link the repo as a local plugin:
+
+```bash
+ln -s ~/dev/dotcursor ~/.cursor/plugins/local/dotcursor
+```
+
+Then reload the window (`Developer: Reload Window`). Cursor reads `rules/` (`.mdc` files) at the plugin root.
+
+**Claude Code** — link the Claude-flavored rules into your rules directory:
+
+```bash
+ln -s ~/dev/dotcursor/claude-rules ~/.claude/rules/dotcursor
+```
+
+Use `~/.claude/rules/` for every project on your machine, or symlink into a single project's `.claude/rules/` instead if you only want it scoped there.
+
+## Update
+
+```bash
+cd ~/dev/dotcursor && git pull
+```
+
+Both symlinks point into the same clone, so a `git pull` updates Cursor and Claude Code at once. Nothing to reinstall.
+
+## Structure
+
+The same conventions are duplicated in two formats, one per tool, because each tool requires a different rule file extension and frontmatter (Cursor: `.mdc` with `globs`/`alwaysApply`; Claude Code: `.md` with `paths`). Content is kept in sync by hand; see `rules/` for the canonical wording and mirror any change into the matching `claude-rules/` file.
+
+```
+rules/                     # Cursor rules (.mdc)
 ├── core/
 │   ├── clean-code.mdc
 │   └── naming.mdc
@@ -41,7 +53,7 @@ rules/
 │       ├── naming.mdc
 │       └── typing.mdc
 └── frameworks/
-    ├── react/          # reserved, no rules yet
+    ├── react/            # coming soon
     └── vue/
         ├── components.mdc
         ├── composables.mdc
@@ -49,33 +61,31 @@ rules/
         ├── reactivity.mdc
         ├── composition-api.mdc
         ├── typescript.mdc          # Vue + TypeScript overlay
-        └── nuxt/          # Nuxt overlay
+        └── nuxt/                    # Nuxt overlay
             ├── auto-imports.mdc
             ├── data-fetching.mdc
             ├── routing.mdc
             ├── server.mdc
             └── state-management.mdc
+claude-rules/               # Claude Code rules (.md), same funnel, same wording
+├── core/
+├── languages/
+└── frameworks/
 .cursor-plugin/
 └── plugin.json
-.version
 ```
 
 
 
-## Shell alias (optional)
+## Adapting the globs to your layout
 
-Add to `~/.zshrc` for quick updates:
+Rules attach based on file path patterns, and the framework rules assume a Nuxt-style layout: `app/`, `pages/`, `layouts/`, `composables/`, `middleware/`, `server/`. If your project puts these elsewhere (for example everything under `src/`), edit the `globs` line in the affected `.mdc` file and the matching `paths:` list in its `claude-rules/` counterpart. A rule whose patterns never match simply never applies, with no warning.
 
-```bash
-alias dotcursor-update='curl -s https://raw.githubusercontent.com/g4rf4z/dotcursor/main/install.sh | bash'
-```
-
-
+The `core/` rules apply unconditionally and need no adjustment.
 
 ## Notes
 
-- Cursor automatically loads rules from `.cursor/rules/`.
-- `.cursor/` is fully managed by this repository. Do not store anything else there, as it gets wiped on update.
-- Do not edit rules directly inside projects. Update this repo, then re-run the install command.
-- `.cursor/.version` tracks the installed commit hash and installation date.
+- Cursor loads rules from the plugin's `rules/` directory once linked into `~/.cursor/plugins/local/`.
+- Claude Code loads rules recursively from `.claude/rules/`, applying path-scoped ones (`paths:` frontmatter) only when a matching file is opened, and unconditional ones (no frontmatter) every session.
+- Edit rules only in this repo, never in a project's copy — there is no copy, both editors read through the symlink.
 
