@@ -1,0 +1,30 @@
+---
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.js"
+  - "**/composables/**/*.ts"
+---
+
+Code splitting:
+- Use `defineAsyncComponent(() => import('./Heavy.vue'))` for components not needed at initial load
+
+Rendering:
+- Keep props passed to child components as stable as possible to avoid unnecessary re-renders
+- Prefer a computed boolean prop (`active`) over passing a shared reactive id to every list item
+- Use `v-once` for content that relies on runtime data but never updates
+- Reserve `v-memo` for measured, performance-critical hotspots which is a micro-optimization rarely needed, and must sit on the same element as `v-for`, not a wrapper
+- Read the computed getter's first argument (3.4+) to access the previous return value and reuse it when the new object is equivalent, avoiding unnecessary effect triggers
+
+Lists:
+- Virtualize large lists using `vue-virtual-scroller`, `vue-virtual-scroll-grid`, or `vueuc/VVirtualList`; there's no official item-count threshold, so profile before reaching for it
+- Always provide a stable, unique `:key` on `v-for` items
+
+Reactivity overhead:
+- Use `shallowRef()` for large immutable data structures to avoid deep proxy overhead
+- Trigger `shallowRef` updates by replacing the root value, not mutating nested properties
+- Use `shallowReactive()` only when root-level-only tracking is explicitly needed
+
+Component abstractions:
+- Avoid unnecessary wrapper or renderless components in large lists; each instance has non-trivial overhead
+- Prefer composables over renderless components for pure logic reuse
+- Measure before optimizing: reducing a handful of component instances has no noticeable effect until you're dealing with hundreds or thousands

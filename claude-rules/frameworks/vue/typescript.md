@@ -1,0 +1,51 @@
+---
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.ts"
+---
+
+Applies to `.vue` files only when the script block uses `lang="ts"`; skip these rules in JavaScript components.
+
+Script setup:
+- Declare `lang="ts"` on the `<script setup>` block
+
+Props:
+- Declare props with type-based `defineProps<T>()` syntax instead of runtime declaration
+- Reactive Props Destructure (see components.md) also works with type-based declaration: `const { foo = 'bar' } = defineProps<Props>()`; use `withDefaults(defineProps<Props>(), { foo: 'bar' })`
+
+Emits:
+- Declare emits with type-based `defineEmits<T>()` using labeled tuple syntax: `{ change: [id: number] }`
+
+v-model:
+- Type `defineModel<T>()` for the bound value, e.g. `defineModel<string>('title')`
+
+Slots:
+- Use `defineSlots<T>()` for type-safe scoped slots
+
+Ref typing:
+- Let `ref()` infer the type from the initial value when possible
+- Use a generic for union types: `ref<string | number>('hello')`
+- Avoid `Ref<T>` annotation when generic argument suffices
+- Specifying a generic without an initial value includes `undefined` in the inferred type: `ref<number>()` infers `Ref<number | undefined>`
+
+Reactive typing:
+- Let `reactive()` infer the type from its argument when possible
+- Type an explicit interface for the object instead of a generic argument on `reactive()`; its return type handles nested ref unwrapping and differs from the generic argument type
+
+Computed typing:
+- Let `computed()` infer the return type from the getter
+- Use a generic only when the return type cannot be inferred: `computed<number>(() => ...)`
+
+Event handlers:
+- Annotate native DOM event handlers with `Event` and narrow `event.target` with `as HTMLInputElement`
+
+Provide / Inject:
+- Type injection keys with `InjectionKey<T>` from Vue and place them in a shared file
+- For a string injection key, declare the type via a generic argument on `inject<T>('key')` instead; provide a default value to remove `undefined` from the result, or force-cast with `inject('key') as T` when a value is always guaranteed
+
+Template refs:
+- Use `useTemplateRef<HTMLInputElement>('input')` (3.5+) for typed DOM refs
+- For component refs, use `InstanceType<typeof MyComponent>` as the generic argument
+- Fall back to `ComponentPublicInstance` as the generic argument when the exact component type isn't available or doesn't matter; it only exposes properties shared by all components (e.g. `$el`)
+- Add an explicit `useTemplateRef<T>()` generic for refs inside `v-for`, `v-if` branches, or `<component :is>`, since automatic inference without a generic only applies to static refs
+- Use optional chaining on template ref values since they are `null` until mount

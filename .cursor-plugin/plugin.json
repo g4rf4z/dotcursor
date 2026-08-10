@@ -1,6 +1,8 @@
 {
   "name": "dotcursor",
-  "description": "Personal Cursor plugin",
-  "version": "1.0.0",
-  "author": { "name": "Grégoire Pinte" }
+  "description": "Clean code, naming, JavaScript/TypeScript, Vue and Nuxt conventions, composed as a funnel from broad to specific",
+  "version": "1.1.0",
+  "author": { "name": "Grégoire Pinte" },
+  "repository": "https://github.com/g4rf4z/dotcursor",
+  "keywords": ["clean-code", "conventions", "nuxt", "rules", "typescript", "vue"]
 }

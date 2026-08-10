@@ -1,0 +1,14 @@
+---
+paths:
+  - "**/server/**/*.js"
+  - "**/server/**/*.ts"
+  - "**/nuxt.config.ts"
+---
+
+Server code isolation:
+- Server middleware (`server/middleware/`) is distinct from route middleware, which runs in the Vue layer; don't confuse the two
+- Never import server-only code in app code; the server directory is isolated
+
+Hybrid rendering:
+- Configure `routeRules` in `nuxt.config.ts` to choose a rendering strategy per route instead of a single global mode
+- Use `{ prerender: true }` for static pages built at deploy time, `{ cache: { maxAge } }` for ISR-style caching, and `{ ssr: false }` for SPA-only routes; SSR is the default for everything else

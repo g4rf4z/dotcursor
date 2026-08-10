@@ -1,0 +1,27 @@
+---
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.js"
+  - "**/composables/**/*.ts"
+---
+
+Refs:
+- Use `ref()` as the primary API for declaring reactive state
+- Avoid `reactive()` for top-level state; it cannot hold primitives, loses reactivity on destructure, and cannot be reassigned
+- At the call site, wrap a composable's return value in `reactive()` for template access without `.value` (e.g. `const mouse = reactive(useMouse())`); the composable itself should still return a plain object of refs (see composables.md)
+
+Ref unwrapping:
+- Rely on automatic unwrapping only for a ref that is a top-level property in the template render context; a nested path like `object.id` does not unwrap, so destructure it to a top-level binding first
+- Access `.value` explicitly on a ref stored inside a reactive array or a native collection (`Map`, `Set`); unwrapping does not happen there
+
+Computed:
+- Use `computed()` for derived values; keep getter functions pure with no side effects
+- Never mutate other refs inside a computed getter
+
+Watchers:
+- Always use a getter `() => obj.prop` to watch a property of a reactive object, not the raw value
+- Use `onWatcherCleanup()` or the `onCleanup` callback parameter to cancel stale async operations (e.g. `AbortController`)
+- Prefer `flush: 'post'` when accessing the owner component's updated DOM in the callback
+
+Utilities:
+- Use `toRefs()` when destructuring a reactive object to preserve reactivity per property

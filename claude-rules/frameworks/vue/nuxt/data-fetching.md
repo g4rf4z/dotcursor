@@ -1,0 +1,29 @@
+---
+paths:
+  - "**/pages/**/*.vue"
+  - "**/layouts/**/*.vue"
+  - "**/app.vue"
+  - "**/composables/**/*.js"
+  - "**/composables/**/*.ts"
+---
+
+Choosing the right API:
+- Use `useFetch(url)` for SSR-safe data fetching from Nuxt API routes or external URLs; it deduplicates between server and client
+- Use `useAsyncData(key, () => fn())` when the data source is not a simple URL (CMS SDK, third-party client, aggregated queries)
+- Use `$fetch` only for client-side interactions (form submissions, event handlers); never in `setup()` alone as it causes double-fetching on SSR
+
+Keys and caching:
+- Always provide an explicit string key to `useAsyncData` to avoid collisions and enable shared state: `useAsyncData('user:123', ...)`
+- When multiple calls share a key, keep `handler`, `deep`, `transform`, `pick`, and `default` consistent across them
+
+Payload optimization:
+- Use `pick` to select only the fields used in the template and reduce SSR payload size
+- Use `transform` for reshaping data before it enters the payload
+
+Reactive URLs:
+- Pass reactive query params as refs in the `query` option so the request refetches on change
+- Use a getter function for dynamic URL construction: ``useFetch(() => `/api/users/${id.value}`)``
+
+Lazy and non-blocking:
+- Use `useLazyFetch` or `{ lazy: true }` when data is not needed before navigation (non-SEO content)
+- Prefer explicit `lazy` option over simply not awaiting to make intent clear

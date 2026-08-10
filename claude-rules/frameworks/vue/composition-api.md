@@ -1,0 +1,12 @@
+---
+paths:
+  - "**/*.vue"
+  - "**/composables/**/*.js"
+  - "**/composables/**/*.ts"
+---
+
+API style:
+- Use exclusively Composition API with `<script setup>`
+- Never use Options API (`data()`, `methods:`, `computed:` as object properties, `this`)
+- Never use `defineComponent()` with an options object
+- Never use mixins; replace with composables (`use*` functions in `composables/`)

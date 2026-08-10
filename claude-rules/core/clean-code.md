@@ -1,0 +1,23 @@
+
+Code quality:
+- Use named constants for any meaningful number, string, or boolean. No magic values
+- Apply DRY pragmatically. Two similar blocks can stay; three is a refactor signal
+- Prefer the obvious solution over the clever one when both work
+
+Organization:
+- One responsibility per file. Split when concerns drift apart
+- Declare constants at the narrowest scope where they are used
+
+Function design:
+- A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
+- Short, well-named helpers beat long inline complexity. Length is a smoke detector; what matters is whether the body matches the function name
+- Linear functions can be long (exhaustive switches, sequential setup). Tangled functions are bad at any length
+- Keep parameters few. When you exceed a handful, group related arguments into an options object
+- No flag parameters. Boolean arguments that change behavior should become two functions instead
+- Use early returns to flatten nesting
+
+Errors:
+- Throw early unexpected states. Do not defer failure to a later layer
+- Prefer typed, domain-specific error types over generic failures (e.g. `NotFoundError`, `ValidationError`)
+- Log errors in English with a stable error code
+- Translate user-facing error messages only at the presentation layer
