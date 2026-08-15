@@ -4,5 +4,5 @@
   "version": "1.1.0",
   "author": { "name": "Grégoire Pinte" },
   "repository": "https://github.com/g4rf4z/dotcursor",
-  "keywords": ["clean-code", "conventions", "nuxt", "rules", "typescript", "vue"]
+  "keywords": ["clean-code", "conventions", "javascript", "nuxt", "rules", "typescript", "vue"]
 }
