@@ -1,8 +1,8 @@
 {
   "name": "dotcursor",
-  "description": "Clean code, naming, JavaScript/TypeScript, Vue and Nuxt conventions, composed as a funnel from broad to specific",
-  "version": "1.1.0",
+  "description": "Coding rules from universal principles to framework specifics: architecture, clean code, naming, CSS, JavaScript, TypeScript, Vue and Nuxt",
+  "version": "1.2.0",
   "author": { "name": "Grégoire Pinte" },
   "repository": "https://github.com/g4rf4z/dotcursor",
-  "keywords": ["clean-code", "conventions", "javascript", "nuxt", "rules", "typescript", "vue"]
+  "keywords": ["architecture", "clean-code", "conventions", "css", "javascript", "nuxt", "rules", "typescript", "vue"]
 }
