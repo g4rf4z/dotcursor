@@ -1,8 +1,10 @@
 # dotcursor
 
-Personal coding rules shared across projects and editors (Cursor and Claude Code).
+Personal coding rules shared across editors and projects.
 
 Rules compose as a funnel, from broad to specific: core → JavaScript baseline → TypeScript overlay (when applicable) → framework → framework TypeScript overlay (when applicable) → meta-framework.
+
+Styles follow the same funnel on their own branch: core → CSS → CSS framework (when applicable).
 
 ## Install
 
@@ -59,9 +61,14 @@ The same conventions are duplicated in two formats, one per tool, because each t
 ```
 rules/                     # Cursor rules (.mdc)
 ├── core/
+    ├── architecture.mdc
 │   ├── clean-code.mdc
 │   └── naming.mdc
 ├── languages/
+│   ├── css/
+│   │   ├── conventions.mdc
+│   │   ├── naming.mdc
+│   │   └── organization.mdc
 │   ├── javascript/
 │   │   ├── conventions.mdc
 │   │   └── naming.mdc
@@ -70,13 +77,14 @@ rules/                     # Cursor rules (.mdc)
 │       └── typing.mdc
 └── frameworks/
     ├── react/            # coming soon
+    ├── tailwind/         # coming soon
     └── vue/
         ├── components.mdc
         ├── composables.mdc
         ├── performance.mdc
         ├── reactivity.mdc
         ├── composition-api.mdc
-        ├── typescript.mdc          # Vue + TypeScript overlay
+        ├── typescript.mdc           # Vue + TypeScript overlay
         └── nuxt/                    # Nuxt overlay
             ├── auto-imports.mdc
             ├── data-fetching.mdc
@@ -90,8 +98,6 @@ claude-rules/               # Claude Code rules (.md), same funnel, same wording
 .cursor-plugin/
 └── plugin.json
 ```
-
-
 
 ## Adapting the globs to your layout
 
