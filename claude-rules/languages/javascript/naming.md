@@ -25,4 +25,4 @@ Variables and properties:
 - Pluralize arrays and other collections: `errors`, `items`, `users`
 
 Constants:
-- Reserve `UPPER_SNAKE_CASE` for module-level constants and fixed magic values; everyday `const` bindings use `camelCase`
+- Use `UPPER_SNAKE_CASE` only for fixed values known when writing the code: primitives and frozen config (`API_BASE_URL`, `MAX_RETRIES`)
