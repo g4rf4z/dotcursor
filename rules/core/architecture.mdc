@@ -5,19 +5,19 @@ alwaysApply: true
 Dependency rule:
 - Layers, from outer to inner: frameworks and UI, adapters, use cases, entities
 - Source code dependencies point inward only: a layer may import from inner layers, never from outer ones
-- Use cases and entities never import framework or UI code, and never perform I/O directly (browser APIs, HTTP, storage)
+- Use cases and entities never import framework or UI code, and never perform I/O directly (e.g. browser APIs, HTTP, storage)
 
 Layers:
 - Entities: core business types and rules, the code least likely to change when the UI or storage changes; no I/O
-- Use cases: one use case per application action (`cancelSubscription`, `publishGif`); they orchestrate entities and reach external systems only through ports
-- Adapters: wrap external systems (browser APIs, HTTP, storage) and convert data between external formats and internal formats; when a use case declares a port, the adapter implements it
-- Frameworks and UI: rendering, user input, and glue code that wires adapters to use cases; keep them thin
+- Use cases: one use case per application action (e.g. `cancelSubscription`, `publishPost`, `sendMessage`); they orchestrate entities and reach external systems only through ports
+- Adapters: wrap external systems (e.g. browser APIs, HTTP, storage) and convert data between external formats and internal formats; when a use case declares a port, the adapter implements it
+- Frameworks and UI: rendering, user input, and glue code that wires adapters to use cases; no business logic
 
 Boundaries:
 - A port is an interface that a use case declares for an external system it needs
 - Pass adapters to use cases as function arguments; do not add a dependency injection library
-- Entities and simple data structures may cross boundaries; database rows and framework objects (DOM events, HTTP responses) may not
+- Entities and simple data structures may cross boundaries; database rows and framework objects (e.g. DOM events, HTTP responses, router objects) may not
 
 Scope:
-- Create use cases and ports when a feature has business logic: validation, calculations, or decisions
+- Create use cases and ports when a feature has business logic (e.g. calculations, decisions, validation)
 - When a feature only fetches and displays data, the UI may call an adapter directly
