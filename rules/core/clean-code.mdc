@@ -10,7 +10,8 @@ Code quality:
 Organization:
 - One responsibility per file. Split when concerns drift apart
 - Follow the stepdown rule: a file reads top-down, from the highest level to the lowest, so exported declarations come before internal ones
-- Declare constants at the top of the file, and export them only when another module uses them
+- Order each file as types, then constants, then functions; within each group, exported declarations come first
+- Export a constant only when another module uses it
 - Group constants by concept, one block per topic, in usage order
 
 Function design:

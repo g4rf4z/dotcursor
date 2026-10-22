@@ -17,7 +17,7 @@ Async code:
 - Prefer `async` functions and `await` over Promise `.then()` chains
 
 Constants:
-- Group related constants inside an object literal when they share a domain
+- Group related constants inside an object literal when they form a lookup table (e.g. error codes, messages, settings); keep standalone constants otherwise
 
 Errors:
 - Implement domain-specific error types (see core/clean-code.md) by extending the built-in `Error` class
