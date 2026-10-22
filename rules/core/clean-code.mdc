@@ -3,16 +3,15 @@ alwaysApply: true
 ---
 
 Code quality:
-- Use named constants for any meaningful boolean, number, or string. No magic values
-- Apply DRY pragmatically. Two similar blocks can stay; three is a refactor signal
 - Prefer the obvious solution over the clever one when both work
+- Apply DRY pragmatically. Two similar blocks can stay; three is a refactor signal
+- Use named constants for any meaningful boolean, number, or string. No magic values
 
 Organization:
 - One responsibility per file. Split when concerns drift apart
 - Follow the stepdown rule: a file reads top-down, from the highest level to the lowest, so exported declarations come before internal ones
-- Group constants by concept, one block per topic, in usage order
 - Declare constants at the top of the file, and export them only when another module uses them
-
+- Group constants by concept, one block per topic, in usage order
 
 Function design:
 - A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
@@ -24,7 +23,7 @@ Function design:
 
 Errors:
 - Throw early on unexpected states. Do not defer failure to a later layer
-- Use a typed, domain-specific error (e.g. `AuthenticationError`, `NotFoundError`, `ValidationError`) when a caller must tell it apart from other errors, for example to redirect, retry or show a specific message; otherwise a generic error is enough
+- Use a typed, domain-specific error (e.g. `AuthenticationError`, `NotFoundError`, `ValidationError`) when a caller must tell it apart from other errors, for example to redirect, retry, or show a specific message; otherwise a generic error is enough
 - Log errors in US English with a stable error code
 - Translate user-facing error messages only at the presentation layer
 

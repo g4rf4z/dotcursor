@@ -3,7 +3,7 @@ alwaysApply: true
 ---
 
 Dependency rule:
-- Layers, from outer to inner: frameworks and UI, adapters, use cases, entities
+- Layers, from inner to outer: entities, use cases, adapters, frameworks and UI
 - Source code dependencies point inward only: a layer may import from inner layers, never from outer ones
 - Use cases and entities never import framework or UI code, and never perform I/O directly (e.g. browser APIs, HTTP, storage)
 
@@ -16,7 +16,7 @@ Layers:
 Boundaries:
 - A port is an interface that a use case declares for an external system it needs
 - Pass adapters to use cases as function arguments; do not add a dependency injection library
-- Entities and simple data structures may cross boundaries; database rows and framework objects (e.g. DOM events, HTTP responses, router objects) may not
+- Let only entities and simple data structures cross boundaries, never database rows or framework objects (e.g. DOM events, HTTP responses, router objects)
 
 Scope:
 - Create use cases and ports when a feature has business logic (e.g. calculations, decisions, validation)

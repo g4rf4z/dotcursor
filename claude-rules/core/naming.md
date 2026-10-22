@@ -1,6 +1,6 @@
 
 General principles:
 - Use descriptive names that reveal intent at the call site
-- No single-letter names except loop counters (e.g. `i`, `j`, `k`) and coordinates (e.g. `x`, `y`, `z`); language-specific rules may add other exceptions
-- No abbreviations except those universally understood (e.g. `api`, `db`, `http`, `id`, `img`, `params`, `props`, `url`, `utils`)
 - Use one term per concept across the codebase: pick one word among synonyms (e.g. `add`/`create`, `check`/`validate`, `delete`/`remove`, `display`/`show`, `edit`/`update`, `fetch`/`load`) for each role and use it everywhere
+- No abbreviations except those universally understood (e.g. `api`, `db`, `http`, `id`, `img`, `params`, `props`, `url`, `utils`)
+- No single-letter names except loop counters (e.g. `i`, `j`, `k`) and coordinates (e.g. `x`, `y`, `z`); language-specific rules may add other exceptions
