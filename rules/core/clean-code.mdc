@@ -10,7 +10,7 @@ Code quality:
 
 Organization:
 - One responsibility per file. Split when concerns drift apart
-- Follow the stepdown rule: a file reads top-down, from the highest level to the lowest, so exported declarations come before internal ones
+- Follow the stepdown rule: a file reads top-down, from the highest level to the lowest
 - Order each file as types, then constants, then functions; within each group, exported declarations come first
 - Export a constant only when another module uses it
 - Keep a constant in the module that uses it; move it to a constants file only when several modules use it, or when it belongs to a set of values read or changed together (e.g. build-injected values, external API ids, product limits)

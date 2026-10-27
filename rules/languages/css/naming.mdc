@@ -8,33 +8,30 @@ Applies to `.vue` files only within `<style>` blocks.
 Casing:
 - Use `kebab-case` for classes, custom properties, keyframes, Sass variables and stylesheet files
 
-Files:
-- Name the base, components and tokens files after their tier, and each page file after its page: `account-settings.css`, `base.css`, `tokens.css`
-
-Classes:
-- Use BEM, joining an element with `__` and a modifier with `--`: `.search-bar`, `.search-bar__input`, `.search-bar__input--large`
-- Name an element after its block alone, even inside another element: `.card__title`, not `.card__header__title`
-- Name a modifier with its value alone: `.button--large`, not `.button--size-large`
-- Name a state class with an adjective attached to its block or element: `.tab.active`
-- Use classes outside BEM only for states and `.hidden`
-
 Custom properties:
-- Beyond core naming's abbreviations, abbreviate only size suffixes: `--color-background-*`, not `--color-bg-*`
+- Beyond core naming's abbreviations, abbreviate only size suffixes (e.g. `--color-background-*`, not `--color-bg-*`)
 - Use these size suffixes, smallest to largest: `3xs` and down, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl` and up
-- Name palette colors `--color-<hue>-<shade>` after their look, never their use, with shades `50`, `100` to `900` in steps of 100, and `950`: `--color-blue-500`, `--color-neutral-900`
-- Name opaque black and white `--color-black` and `--color-white`, and translucent ones `--color-<black|white>-alpha-<opacity percentage>`: `--color-black-alpha-40`, `--color-white`, `--color-white-alpha-8`
-- Name font stacks `--font-family-<use>`: `--font-family-body`, `--font-family-code`
-- Name spacing `--space-<n>`, with n an integer and a value of n × 4px: `--space-2`, `--space-4`
-- Name the duration, font size, radius and shadow scales `--<scale>-<size>`: `--duration-sm`, `--radius-md`, `--shadow-lg`
-- Name semantic colors `--color-<target>-<role>[-<state>]` after their use, never their look, with `background`, `border` or `text` as target, a meaning as role (`default`, `muted`, `warning`), and the pseudo-class or attribute it styles as state (`disabled`, `hover`): `--color-background-warning`, `--color-border-default-hover`, `--color-text-muted`
-- Name z-index tokens `--z-index-<layer>`: `--z-index-dropdown`, `--z-index-modal`
-- Name component and local custom properties `--<block>-<css-property>`: `--button-height`, `--card-padding`
-
-Keyframes:
-- Name keyframes `<block>-<motion>`: `spinner-rotate`, `toast-slide-in`; name shared keyframes `<motion>`: `fade-in`
+- Name palette colors `--color-<hue>-<shade>` after their look, never their use, with shades `50`, `100` to `900` in steps of 100, and `950` (e.g. `--color-blue-500`, `--color-neutral-900`, `--color-red-50`)
+- Name opaque black and white `--color-black` and `--color-white`, and translucent ones `--color-<black|white>-alpha-<opacity percentage>` (e.g. `--color-black-alpha-40`, `--color-black-alpha-80`, `--color-white-alpha-8`)
+- Name font stacks `--font-family-<use>` (e.g. `--font-family-body`, `--font-family-code`, `--font-family-heading`)
+- Name spacing `--space-<n>`, with n an integer and a value of n × 4px (e.g. `--space-1`, `--space-2`, `--space-4`)
+- Name the duration, font size, radius and shadow scales `--<scale>-<size>` (e.g. `--duration-sm`, `--radius-md`, `--shadow-lg`)
+- Name semantic colors `--color-<target>-<role>[-<state>]` after their use, never their look, with `background`, `border` or `text` as target, a meaning as role (e.g. `default`, `muted`, `warning`), and the pseudo-class or attribute it styles as state (e.g. `disabled`, `focus`, `hover`): `--color-background-warning`, `--color-border-default-hover`, `--color-text-muted`
+- Name z-index tokens `--z-index-<layer>` (e.g. `--z-index-dropdown`, `--z-index-modal`, `--z-index-toast`)
+- Name component and local custom properties `--<block>-<css-property>` (e.g. `--button-height`, `--card-padding`, `--dialog-width`)
 
 Sass variables (in `.scss` files and `lang="scss"` blocks):
-- Name breakpoint variables `$breakpoint-<size>`: `$breakpoint-md`
+- Name breakpoint variables `$breakpoint-<size>` (e.g. `$breakpoint-sm`, `$breakpoint-md`, `$breakpoint-lg`)
+
+Classes:
+- Use BEM, joining an element with `__` and a modifier with `--` (e.g. `.search-bar`, `.search-bar__input`, `.search-bar__input--large`)
+- Name an element after its block alone, even inside another element (e.g. `.card__title`, not `.card__header__title`)
+- Name a modifier with its value alone (e.g. `.button--large`, not `.button--size-large`)
+- Name a state class with an adjective attached to its block or element (e.g. `.card.selected`, `.menu.expanded`, `.tab.active`)
+- Use classes outside BEM only for states and a few global utilities (e.g. `.hidden`, `.truncate`, `.visually-hidden`)
+
+Keyframes:
+- Name keyframes `<block>-<motion>` (e.g. `dialog-scale-in`, `spinner-rotate`, `toast-slide-in`); name shared keyframes `<motion>` (e.g. `fade-in`, `pulse`, `slide-up`)
 
 Injected stylesheets (into a page you do not own):
-- Prefix every class, custom property and keyframe with a short project prefix: `.acme-card__title`, `--acme-space-4`
+- Prefix every class, custom property and keyframe with a short project prefix (e.g. `.acme-button`, `--acme-color-primary`, `acme-fade-in`)

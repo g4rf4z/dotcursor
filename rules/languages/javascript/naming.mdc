@@ -4,19 +4,19 @@ alwaysApply: false
 ---
 
 Files:
-- Use `kebab-case` for filenames: `date-utils.ts`, `user-service.ts`, `validation-schema.ts`
-
-Functions and methods:
-- Use verb-first names for actions: `fetchUser`, `parseInput`, `sendEmail`
-- Use `get*` for side-effect-free non-boolean functions that retrieve or compute a value: `getCurrentTime`, `getUserName`, `getVisibleItem`
-- Prefix booleans and boolean-returning functions with `can`, `has`, `is`, or `should`: `canEdit`, `hasAccess`, `isReady`
+- Use `kebab-case` for filenames (e.g. `date-utils.ts`, `user-service.ts`, `validation-schema.ts`)
 
 Types and classes:
 - Use `PascalCase` for classes and type-like names
 
+Constants:
+- Use `UPPER_SNAKE_CASE` only for primitives and frozen config known when writing the code (e.g. `API_BASE_URL`, `DEFAULT_LOCALE`, `MAX_RETRIES`)
+
+Functions and methods:
+- Use verb-first names for actions (e.g. `fetchUser`, `parseInput`, `sendEmail`)
+- Use `get*` for side-effect-free non-boolean functions that retrieve or compute a value (e.g. `getCurrentTime`, `getUserName`, `getVisibleItem`)
+- Prefix booleans and boolean-returning functions with `can`, `has`, `is`, or `should` (e.g. `canEdit`, `hasAccess`, `isReady`)
+
 Variables and properties:
 - Use `camelCase`
-- Pluralize arrays and other collections: `errors`, `items`, `users`
-
-Constants:
-- Use `UPPER_SNAKE_CASE` only for fixed values known when writing the code: primitives and frozen config (`API_BASE_URL`, `MAX_RETRIES`)
+- Pluralize arrays and other collections (e.g. `errors`, `items`, `users`)
