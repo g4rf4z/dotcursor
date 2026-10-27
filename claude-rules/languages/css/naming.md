@@ -26,11 +26,7 @@ Sass variables (in `.scss` files and `lang="scss"` blocks):
 - Name breakpoint variables `$breakpoint-<size>` (e.g. `$breakpoint-sm`, `$breakpoint-md`, `$breakpoint-lg`)
 
 Classes:
-- Use BEM, joining an element with `__` and a modifier with `--` (e.g. `.search-bar`, `.search-bar__input`, `.search-bar__input--large`)
-- Name an element after its block alone, even inside another element (e.g. `.card__title`, not `.card__header__title`)
-- Name a modifier with its value alone (e.g. `.button--large`, not `.button--size-large`)
-- Name a state class with an adjective attached to its block or element (e.g. `.card.selected`, `.menu.expanded`, `.tab.active`)
-- Use classes outside BEM only for states and a few global utilities (e.g. `.hidden`, `.truncate`, `.visually-hidden`)
+- Use BEM with the two dashes naming scheme (e.g. `.button--size_large`, `.search-bar__input`, `.tab--active`)
 
 Keyframes:
 - Name keyframes `<block>-<motion>` (e.g. `dialog-scale-in`, `spinner-rotate`, `toast-slide-in`); name shared keyframes `<motion>` (e.g. `fade-in`, `pulse`, `slide-up`)

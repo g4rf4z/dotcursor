@@ -16,7 +16,7 @@ Typing:
 Interfaces vs types:
 - Default to `interface` for object shapes
 - Use `type` for primitives, unions, intersections, and mapped or conditional types
-- Use discriminated unions (one shared literal field per variant) to model state
+- Use discriminated unions to model state
 
 Enumerations:
 - Prefer string literal unions (e.g. `type Status = 'idle' | 'loading' | 'ready'`)

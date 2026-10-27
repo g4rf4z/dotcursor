@@ -10,7 +10,7 @@ paths:
 ---
 
 Modules:
-- Use ES modules with `import` and `export` by default; fall back to CommonJS `require()` only when required by the surrounding tool or config format
+- Use ES modules by default; fall back to CommonJS only when required by the config format or surrounding tool
 - Use named exports by default; reserve default exports for framework-required entry points (e.g. config files, Next.js pages, Nuxt plugins)
 
 Errors:

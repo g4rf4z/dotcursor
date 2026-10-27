@@ -10,7 +10,7 @@ Code quality:
 
 Organization:
 - One responsibility per file. Split when concerns drift apart
-- Follow the stepdown rule: a file reads top-down, from the highest level to the lowest
+- Follow the stepdown rule
 - Order each file as types, then constants, then functions; within each group, exported declarations come first
 - Export a constant only when another module uses it
 - Keep a constant in the module that uses it; move it to a constants file only when several modules use it, or when it belongs to a set of values read or changed together (e.g. build-injected values, external API ids, product limits)
@@ -19,7 +19,6 @@ Organization:
 
 Function design:
 - A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
-- Short, well-named helpers beat long inline complexity. Length is a smoke detector; what matters is whether the body matches the function name
 - Linear functions can be long (e.g. exhaustive switches, field mappings, sequential setup). Tangled functions (e.g. deep nesting, interleaved concerns, mixed abstraction levels) must be split, whatever their length
 - Keep parameters few. When a function takes more than 3 parameters, group related arguments into an options object
 - No flag parameters. Boolean arguments that change behavior should become two functions instead
