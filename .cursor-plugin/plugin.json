@@ -4,5 +4,5 @@
   "version": "2.0.0",
   "author": { "name": "Grégoire Pinte" },
   "repository": "https://github.com/g4rf4z/dotcursor",
-  "keywords": ["architecture", "clean-code", "conventions", "css", "javascript", "rules", "typescript"]
+  "keywords": ["architecture", "clean-code", "comments", "conventions", "css", "html", "javascript", "rules", "typescript"]
 }

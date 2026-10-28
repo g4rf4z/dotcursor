@@ -1,0 +1,13 @@
+---
+globs: **/*.cjs, **/*.js, **/*.jsx, **/*.mjs, **/*.ts, **/*.tsx, **/*.vue
+alwaysApply: false
+---
+
+Applies to `.vue` files only within `<script>` blocks.
+
+Syntax:
+- Outside JSX markup, use `/** */` for doc comments and `//` at the start of each line for all other comments
+- Inside JSX markup, use `{/* */}`
+
+Block comments:
+- In a `/** */` or `{/* */}` comment that spans several lines, start each line between the delimiters with ` * `

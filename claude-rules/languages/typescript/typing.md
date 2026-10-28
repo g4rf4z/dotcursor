@@ -10,7 +10,7 @@ Applies to `.vue` files only when the script block uses `lang="ts"`.
 Typing:
 - Type explicitly at module boundaries (e.g. component props, exported functions, public APIs). Prefer inference for local values
 - Avoid `any`. Use `unknown` and narrow via type guards or schema validation before access. Use the project's existing schema library when one is established; default to Zod otherwise
-- Avoid type assertions (`as T`). Allowed without justification: `as const`, DOM narrowing after a known query (`as HTMLElement`), and assertions made immediately after a runtime check. Any other `as` requires a one-line comment explaining why it's safe
+- Avoid type assertions (`as T`). Allowed without justification: `as const`, DOM narrowing after a known query (`as HTMLElement`), and assertions made immediately after a runtime check.
 - Never use double assertions (`as unknown as T`). They bypass TS entirely
 - Use `satisfies T` over `as T` to verify conformance without widening literals
 - Never use the non-null operator `!` unless the value is structurally guaranteed in the surrounding scope

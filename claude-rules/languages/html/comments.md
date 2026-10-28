@@ -1,0 +1,13 @@
+---
+paths:
+  - "**/*.html"
+  - "**/*.vue"
+---
+
+Applies to `.vue` files only within `<template>` blocks.
+
+Syntax:
+- Use `<!-- -->`
+
+Block comments:
+- In a comment that spans several lines, indent each line between the delimiters by one level

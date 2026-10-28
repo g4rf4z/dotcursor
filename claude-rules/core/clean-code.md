@@ -35,7 +35,3 @@ Errors:
 - Use a typed, domain-specific error (e.g. `AuthenticationError`, `NotFoundError`, `ValidationError`) when a caller must tell it apart from other errors, for example to redirect, retry, or show a specific message; otherwise a generic error is enough
 - Log errors in US English with a stable error code
 - Translate user-facing error messages only at the presentation layer
-
-Comments:
-- Comment only context the code cannot express (e.g. a non-obvious constraint, a tradeoff, why not the obvious way); never paraphrase the code
-- Write comments in US English
