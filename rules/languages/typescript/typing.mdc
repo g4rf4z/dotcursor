@@ -21,6 +21,7 @@ Interfaces vs types:
 Enumerations:
 - Prefer string literal unions (e.g. `type Status = 'idle' | 'loading' | 'ready'`)
 - Avoid `enum`. Never use `const enum`. If a third-party API forces an enum, define every value explicitly
+- Keep members of a string literal union inline (e.g. `case 'monthly':`, `plan === 'lifetime'`, `setPlan('free')`)
 
 Generics:
 - Use generics when the return type depends on the input type. Otherwise use `unknown`

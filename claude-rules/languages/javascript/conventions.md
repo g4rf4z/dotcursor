@@ -17,7 +17,7 @@ Errors:
 - Implement domain-specific error types (see core/clean-code) by extending the built-in `Error` class
 
 Constants:
-- Group related constants inside an object literal when they form a lookup table (e.g. error codes, messages, settings); keep standalone constants otherwise
+- Group related constants inside an object literal when they form a lookup table (e.g. error codes, route paths, settings); keep standalone constants otherwise
 
 Async code:
 - Prefer `async` functions and `await` over Promise `.then()` chains

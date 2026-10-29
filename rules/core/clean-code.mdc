@@ -6,7 +6,16 @@ alwaysApply: false
 Code quality:
 - Prefer the obvious solution over the clever one when both work
 - Apply DRY pragmatically. Two similar blocks can stay; three is a refactor signal
-- Use named constants for any meaningful boolean, number, or string. No magic values
+
+Literals:
+- Keep literals inline by default
+- Name a literal when any of these applies, even if a key already describes it:
+  - It is a tuning value (e.g. page size, threshold, timeout)
+  - It is an opaque external code (e.g. `POSTGRESQL_UNIQUE_VIOLATION`, not `'23505'`)
+  - The same value with the same meaning appears three times or more
+- Otherwise keep it inline, including:
+  - Values whose key, parameter, or surrounding names already say what they are (e.g. `padStart(2, '0')`, `quantity: 1`, `unixSeconds * 1000`)
+  - Error and log messages
 
 Organization:
 - One responsibility per file. Split when concerns drift apart
