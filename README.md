@@ -4,7 +4,9 @@ Personal coding rules shared across editors and projects.
 
 Rules are layered from general to specific, with each layer refining the previous one: core → JavaScript baseline → TypeScript overlay (when applicable).
 
-Styles are layered the same way, in their own stack: core naming → CSS.
+Styles are layered the same way, in their own stack: core (comments, naming) → CSS.
+
+Markup is layered the same way: core comments → HTML.
 
 ## Install
 
@@ -64,11 +66,16 @@ rules/     # Cursor rules (.mdc)
 ├── core/
 │   ├── architecture.mdc
 │   ├── clean-code.mdc
+│   ├── comments.mdc
 │   └── naming.mdc
 └── languages/
     ├── css/
+    │   ├── comments.mdc
     │   └── naming.mdc
+    ├── html/
+    │   └── comments.mdc
     ├── javascript/
+    │   ├── comments.mdc
     │   ├── conventions.mdc
     │   └── naming.mdc
     └── typescript/

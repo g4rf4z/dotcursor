@@ -15,6 +15,5 @@ Type suffixes:
 - Use `Error` for subclasses of the built-in `Error`
 
 Generic type parameters:
-- Bare `T` is fine for trivial single-parameter generics: `identity<T>(value: T): T`
-- For multiple parameters or domain meaning, prefix with `T` and name it: `<TKey, TValue>`, `<TInput, TOutput>`
-- Never use bare `U`, `V`, `W`. They tell the reader nothing
+- Use bare `T` only for trivial single-parameter generics (e.g. `identity<T>(value: T): T`)
+- For multiple parameters or domain meaning, prefix with `T` and name it (e.g. `<TInput, TOutput>`, `<TKey, TValue>`, `<TRequest, TResponse>`)
