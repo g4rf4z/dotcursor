@@ -5,7 +5,7 @@ paths:
   - "**/*.vue"
 ---
 
-Applies to `.vue` files only within `<style>` blocks.
+Applies to `.vue` files only within `<style>` blocks. With a CSS framework (e.g. Bootstrap, Nuxt UI, Tailwind), follow its conventions instead.
 
 Casing:
 - Use `kebab-case` for classes, custom properties, keyframes, Sass variables and stylesheet files

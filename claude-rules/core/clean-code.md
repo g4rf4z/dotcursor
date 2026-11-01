@@ -29,8 +29,6 @@ Organization:
 - Order each file as types, then constants, then functions; within each group, exported declarations come first
 - Export a constant only when another module uses it
 - Keep a constant in the module that uses it; move it to a constants file only when several modules use it, or when it belongs to a set of values read or changed together (e.g. build-injected values, external API ids, product limits)
-- Group constants by concept, one block per topic, in usage order
-- When no other ordering rule applies (e.g. barrel exports, constants files, object keys), sort blocks and their contents alphabetically; array items keep their meaningful order
 
 Function design:
 - A function should have a single, clearly stateable purpose. If you cannot summarize it in one short phrase, split it
@@ -42,5 +40,6 @@ Function design:
 Errors:
 - Throw early on unexpected states. Do not defer failure to a later layer
 - Use a typed, domain-specific error (e.g. `AuthenticationError`, `NotFoundError`, `ValidationError`) when a caller must tell it apart from other errors, for example to redirect, retry, or show a specific message; otherwise a generic error is enough
-- Log errors in US English with a stable error code
+- Give an error a stable code if and only if it is sent outside the process and the receiver handles it differently from other errors
+- Log errors in US English
 - Translate user-facing error messages only at the presentation layer

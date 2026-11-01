@@ -26,3 +26,4 @@ Functions and methods:
 Variables and properties:
 - Use `camelCase`
 - Pluralize arrays and other collections (e.g. `errors`, `items`, `users`)
+- Prefix unvalidated input with `raw` when the function derives a validated value from it (e.g. `rawBody`, `rawEmail`, `rawUrl`)
