@@ -47,6 +47,25 @@ Each rule is scoped to code files with `paths`, so in any project it loads only 
 > [!WARNING]
 > Do not link the rules into a project's `.claude/rules/`. Claude Code treats a symlink that points outside the project as an external import and, even after approval, loads only rules without `paths`. Every rule here has `paths`, so none would load.
 
+To have Claude Code run the project's ESLint after each edit and fix the errors it reports, add the lint hook to `~/.claude/settings.json` for every project, or to a project's `.claude/settings.local.json` for that project only:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "~/Projects/dotcursor/claude-hooks/lint.sh" }]
+      }
+    ]
+  }
+}
+```
+
+Use `.claude/settings.local.json` rather than `.claude/settings.json`: the command points to your own clone, so it should not be shared with the project's repository.
+
+The hook requires `jq`. It does nothing in a project without ESLint, or on a file ESLint does not check. Errors come from each project's own ESLint config, so a rule is checked only in the projects whose config enables it. Start a new session, then run `/hooks` to check that the hook is registered.
+
 ## Update
 
 Pull the latest changes:
@@ -84,6 +103,8 @@ rules/     # Cursor rules (.mdc)
 claude-rules/     # Claude Code rules (.md), same layers, same wording
 ├── core/
 └── languages/
+claude-hooks/     # Claude Code hooks
+└── lint.sh
 .cursor-plugin/
 └── plugin.json
 ```
